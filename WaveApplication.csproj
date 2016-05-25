@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{42DA150D-B17F-40E3-B6C9-EE75D06D3EBB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WaveApplication</RootNamespace>
+    <AssemblyName>WaveApplication</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dataq.Common, Version=1.0.0.1, Culture=neutral, PublicKeyToken=9767f47f9c295223, processorArchitecture=MSIL" />
+    <Reference Include="Dataq.Simple, Version=1.0.0.2, Culture=neutral, PublicKeyToken=9767f47f9c295223, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Data\AverageBaseDataSource.cs" />
+    <Compile Include="Data\AverageRealDataCollect.cs" />
+    <Compile Include="Data\DI145DataSource.cs" />
+    <Compile Include="Data\DI145RealDataCollector.cs" />
+    <Compile Include="Data\IBaseDataSource.cs" />
+    <Compile Include="Data\ExperimentDataFile.cs" />
+    <Compile Include="Data\ExperimentBaseDataSource.cs" />
+    <Compile Include="Data\ExperimentRealDataCollector.cs" />
+    <Compile Include="Data\RandomDataSource.cs" />
+    <Compile Include="Data\RealDataFile.cs" />
+    <Compile Include="Render\LimitLine.cs" />
+    <Compile Include="Render\LimitLineRender.cs" />
+    <Compile Include="Render\RenderContext.cs" />
+    <Compile Include="Render\RenderItemPool.cs" />
+    <Compile Include="Render\ScalePointRender.cs" />
+    <Compile Include="Render\ViewportGeneraotr.cs" />
+    <Compile Include="Parameter.cs" />
+    <Compile Include="Render\ViewRenderItemPool.cs" />
+    <Compile Include="Scheduling\DI145WidgetFactory.cs" />
+    <Compile Include="Scheduling\WaveTaskScheduler.cs" />
+    <Compile Include="Scheduling\FileWidgetFactory.cs" />
+    <Compile Include="Scheduling\ScrollTask.cs" />
+    <Compile Include="Scheduling\StatisticResult.cs" />
+    <Compile Include="Scheduling\StatisticTask.cs" />
+    <Compile Include="Scheduling\WidgetFactory.cs" />
+    <Compile Include="Render\IPointRender.cs" />
+    <Compile Include="Scheduling\RenderTask.cs" />
+    <Compile Include="Render\Viewport.cs" />
+    <Compile Include="Render\ListRenderItemPool.cs" />
+    <Compile Include="Data\RandomBaseDataSource.cs" />
+    <Compile Include="Data\RandomRealDataCollector.cs" />
+    <Compile Include="Scheduling\RandomWidgetFactory.cs" />
+    <Compile Include="Render\PillarPointRender.cs" />
+    <Compile Include="UI\ConfigurationWindow.xaml.cs">
+      <DependentUpon>ConfigurationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Converter.cs" />
+    <Compile Include="UI\DrawOptionWindow.xaml.cs">
+      <DependentUpon>DrawOptionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\NotifyableListBox.cs" />
+    <Compile Include="Render\PillarImage.cs" />
+    <Compile Include="Render\PillarLayer.cs" />
+    <Compile Include="Render\PillarVisual.cs" />
+    <Compile Include="UI\PathWindow.xaml.cs">
+      <DependentUpon>PathWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReportWindow.xaml.cs">
+      <DependentUpon>ReportWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="UI\ConfigurationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\DrawOptionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Render\RenderItem.cs" />
+    <Compile Include="Data\StorageBlock.cs" />
+    <Compile Include="Data\IRealDataCollector.cs" />
+    <Compile Include="UI\FixedSizePanel.cs" />
+    <Compile Include="UI\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="UI\PathWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\ReportWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

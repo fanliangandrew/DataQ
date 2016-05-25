@@ -1,0 +1,131 @@
+﻿<Window x:Class="WaveApplication.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WaveApplication.UI"
+        Title="MainWindow" Height="940.521" Width="1107.478" WindowState="Maximized"
+        Background="#FFB8D8FF"
+        Closing="Window_Closing" >
+    <Window.Resources>
+        <local:ExceedLimitTypeToStringConverter x:Key="ExceedLimitTypeToStringConverter" />
+        <Style x:Key="CaptionStyle" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Margin" Value="0,5" />
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="4,4,0,0" />
+            <Setter Property="FontSize" Value="15" />
+        </Style>
+        <Style x:Key="LogListBoxStyle" TargetType="ListBox">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="VirtualizingStackPanel.VirtualizationMode" Value="Recycling" />
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBlock Margin="4,4,0,0"
+                                       Text="{Binding Timestamp}" />
+                            <TextBlock Margin="14,4,4,0"
+                                       Text="{Binding Type,Converter={StaticResource ExceedLimitTypeToStringConverter}}" />
+                        </WrapPanel>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="WaveListBoxStyle" TargetType="{x:Type local:NotifyableListBox}">
+            <Setter Property="Height" Value="250" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Disabled" />
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden" />
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <local:FixedSizePanel FixedItemWidth="460.8" CacheCount="20" />
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Menu>
+            <MenuItem Header="数据采集">
+                <MenuItem Name="StartMenuItem" Header="开始" Click="StartMenuItem_Click" />
+                <MenuItem Name="StopMenuItem" Header="停止" Click="StopMenuItem_Click" />
+                <MenuItem Name="ScrollMenuItem" Header="自动滚屏" IsCheckable="True" IsChecked="True" Click="ScrollMenuItem_Click" />
+            </MenuItem>
+            <MenuItem Header="数据绘制">
+                <MenuItem Name="OpenMenuItem" Header="打开" Click="OpenMenuItem_Click" />
+            </MenuItem>
+            <MenuItem Header="设置">
+                <MenuItem Name="ConfigurationMenuItem" Header="设置" Click="ConfigurationMenuItem_Click" />
+            </MenuItem>
+        </Menu>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="7*" />
+            </Grid.ColumnDefinitions>
+            <Grid Margin="15,15,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Text="统计信息" Style="{StaticResource CaptionStyle}" />
+                <Border Grid.Row="1" Background="White">
+                    <Grid Grid.Row="1" Margin="0,0,4,4">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" Text="采样点个数"/>
+                        <TextBlock Grid.Row="1" Text="高于误差范围累计和" />
+                        <TextBlock Grid.Row="2" Text="低于误差范围累计和" />
+                        <TextBlock Grid.Row="3" Text="高于误差范围百分比" />
+                        <TextBlock Grid.Row="4" Text="低于误差范围百分比" />
+                        <TextBlock Name="CountTextBlock" Grid.Row="0" Grid.Column="1" />
+                        <TextBlock Name="ExceedAmountTextBlock" Grid.Row="1" Grid.Column="1"/>
+                        <TextBlock Name="UnderAmountTextBlock" Grid.Row="2" Grid.Column="1" />
+                        <TextBlock Name="ExceedPercentTextBlock" Grid.Row="3" Grid.Column="1" />
+                        <TextBlock Name="UnderPercentTextBlock" Grid.Row="4" Grid.Column="1" />
+                    </Grid>
+                </Border>
+                <TextBlock Grid.Row="2" Text="警报日志" Style="{StaticResource CaptionStyle}" />
+                <ListBox Name="LogListBox" Grid.Row="3" Style="{StaticResource LogListBoxStyle}"></ListBox>
+            </Grid>
+            <Grid Grid.Column="1" Margin="15,15,15,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Text="局部视图" Style="{StaticResource CaptionStyle}" />
+                <Border Grid.Row="1" Background="White" >
+                    <Viewbox Name="ViewViewBox">
+                    </Viewbox>
+                </Border>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2" Margin="15">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Text="全局视图" Style="{StaticResource CaptionStyle}" />
+            <local:NotifyableListBox x:Name="WaveListBox" Grid.Row="2"
+                                     Style="{StaticResource WaveListBoxStyle}" />
+        </Grid>
+    </Grid>
+</Window>

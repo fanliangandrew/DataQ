@@ -1,0 +1,31 @@
+﻿<Window x:Class="WaveApplication.UI.ConfigurationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="配置" Height="350" Width="400" ResizeMode="NoResize">
+    <Grid Name="ContextGrid" Margin="20,30">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="超出百分比" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="1" Text="不足半分比" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="2" Text="blunt警戒线" VerticalAlignment="Center" />
+        <TextBlock Grid.Row="3" Text="break警戒线" VerticalAlignment="Center" />
+        <TextBox Grid.Column="1" VerticalAlignment="Center"
+                 Text="{Binding ExceedPercent,Mode=TwoWay}" />
+        <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"
+                 Text="{Binding UnderPercent,Mode=TwoWay}" />
+        <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"
+                 Text="{Binding BluntLimitPercent,Mode=TwoWay}" />
+        <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"
+                 Text="{Binding BreakLimitPercent,Mode=TwoWay}" />
+        <Button Name="SubmitButton" Content="确定" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="10,5" Click="SubmitButton_Click"/>
+    </Grid>
+</Window>

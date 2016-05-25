@@ -1,0 +1,10 @@
+
+            string str = @"Data Source=WIN-13B7K72BH2U;Initial Catalog=logintest;Persist Security Info=True;User ID=sa;Password=sa";
+            SqlConnection conn = new SqlConnection(str);
+            conn.Open();
+            string selectsql = "insert into logintest (data) values (" + _last + ")";
+            SqlCommand cmd = new SqlCommand(selectsql, conn);
+            cmd.CommandType = CommandType.Text;
+            SqlDataReader sdr;
+            sdr = cmd.ExecuteReader();
+            conn.Close();
